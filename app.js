@@ -9,6 +9,8 @@ const morgan = require("morgan");
 
 const whitelist = [process.env.HOST_CLIENT]
 
+console.log(whitelist)
+
 app.use(cors({ origin: whitelist }));
 app.use(express.json());
 app.use(cookieParser(sessionSecret));
