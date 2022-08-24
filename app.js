@@ -9,10 +9,6 @@ const morgan = require("morgan");
 
 const whitelist = [process.env.HOST_CLIENT]
 
-app.use('/', (req, res) => {
-  res.send(`<h1>Hello World ${whitelist}</h1>`);
-})
-
 console.log(whitelist)
 
 // app.use(cors({ origin: whitelist }));
@@ -51,6 +47,7 @@ const port = process.env.PORT || 3000;
 //   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 //   next();
 // });
+
 const sessionDb = MongoDBStore({
   uri: process.env.uri,
   collection: "mySessions",
