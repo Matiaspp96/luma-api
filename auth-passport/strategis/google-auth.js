@@ -19,7 +19,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: `${process.env.API_URL}/api/auth/login/google/callback`,
+      callbackURL: `${process.env.API_URL}/auth/login/google/callback`,
       scope: ["openid", "email", "profile"],
       passReqToCallback: true,
     },
