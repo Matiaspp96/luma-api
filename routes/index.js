@@ -17,5 +17,9 @@ router.use("/users", userRouter);
 router.use("/reviews", reviewRouter);
 router.use("/payments", paymentRouter);
 router.use("/cart", cartRouter);
+router.use('/', (req, res) => {
+    res.send(`<h1>Hello World</h1>`);
+})
+
 
 module.exports = router;
