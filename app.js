@@ -7,7 +7,9 @@ const dbConnectNoSql = require("./config/mongo");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
-app.use(cors());
+const whitelist = [process.env.HOST_CLIENT]
+
+app.use(cors({ origin: whitelist }));
 app.use(express.json());
 app.use(cookieParser(sessionSecret));
 app.use(express.urlencoded({ extended: false }));
@@ -22,11 +24,11 @@ const passport = require("passport");
 const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.HOST_CLIENT); // update to match the domain you will make the request from
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  //res.header('Access-Control-Allow-Origin', process.env.HOST_CLIENT); // update to match the domain you will make the request from
+  //res.header('Access-Control-Allow-Credentials', 'true');
+  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  //res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
 // app.use((req, res, next) => {
