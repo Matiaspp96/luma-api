@@ -5,28 +5,27 @@ const { API_URL, HOST, USER, PASS, PORTGMAIL } = process.env;
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: true, // true for 465, false para otros puertos
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false
-    }
+  port: process.env.EMAIL_PORT,
+  secure: true, // true for 465, false para otros puertos
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 const emailer = function (users) {
   return {
-    from: '"Pet Elegant Ecommerce" <pet.elegant.ecommerce.henry@gmail.com>',
+    from: '"Luz Mei Ecommerce" <luma.tuc.ecommerce@gmail.com>',
     to: users.email,
-    subject: "Bienvenido a Pet Elegante",
+    subject: "Bienvenido a Luz Mei Ecommerce",
     html: ` 
     <div style="background-color: #2b9423; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
     <ul>
-    <h2 style="color: #fff;">Hola ${
-      users.name
-    }, Pet Elegant te da la bienvenida a tienda, gracias por sumarte! </h2>
+    <h2 style="color: #fff;">Hola ${users.name
+      }, Luz Mei Ecommerce te da la bienvenida a tienda, gracias por sumarte! </h2>
     </ul>
     </div>
     <ul>
@@ -34,10 +33,9 @@ const emailer = function (users) {
     <h3 style="color: #000000;">ESTOS SON LOS DATOS DE TU CUENTA:</h3>
     <h4 style="color: #000000;">- Nombre: ${users.name}</h4>
     <h4 style="color: #000000;">- Email: ${users.email}</h4>
-    <h4 style="color: #000000;">- Teléfono: ${
-      users.phone ? users.phone : "-"
-      
-    }</h4>
+    <h4 style="color: #000000;">- Teléfono: ${users.phone ? users.phone : "-"
+
+      }</h4>
     
     <a href="${process.env.API_URL}/api/auth/confirmmail/${users._id}" >Click para confirmar tu email</a>
     </ul>
@@ -83,24 +81,18 @@ const emailOrder = function (user, data) {
     <div style="background-color: #fff; color: #000000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
     <ul>
     <h2 style="color: #000000;">Dirección de entrega:</h2>
-    <li style="color: #000000;">Ciudad: ${
-      data.shipping?.state ? data.shipping.state : "-"
-    }</li>
-    <li style="color: #000000;">Calle: ${
-      data.shipping?.street ? data.shipping.street : "-"
-    }</li>
-    <li style="color: #000000;">Número: ${
-      data.shipping?.number ? data.shipping.number : "-"
-    }</li>
-    <li style="color: #000000;">Piso: ${
-      data.shipping?.floor ? data.shipping.floor : "-"
-    }</li>
-    <li style="color: #000000;">Entre calles: ${
-      data.shipping?.between ? data.shipping.between : "-"
-    }</li>
-    <li style="color: #000000;">Código Postal: ${
-      data.shipping?.zip ? data.shipping.zip : "-"
-    }</li>
+    <li style="color: #000000;">Ciudad: ${data.shipping?.state ? data.shipping.state : "-"
+      }</li>
+    <li style="color: #000000;">Calle: ${data.shipping?.street ? data.shipping.street : "-"
+      }</li>
+    <li style="color: #000000;">Número: ${data.shipping?.number ? data.shipping.number : "-"
+      }</li>
+    <li style="color: #000000;">Piso: ${data.shipping?.floor ? data.shipping.floor : "-"
+      }</li>
+    <li style="color: #000000;">Entre calles: ${data.shipping?.between ? data.shipping.between : "-"
+      }</li>
+    <li style="color: #000000;">Código Postal: ${data.shipping?.zip ? data.shipping.zip : "-"
+      }</li>
     </ul>
     </div>
     
@@ -113,9 +105,8 @@ const emailOrder = function (user, data) {
     <li style="color: #000000;">DNI del titular de la tarjeta con la que se realizó el pago.</li>
     <li style="color: #000000;">Tarjeta de crédito utilizada para realizar la compra.</li>
     <br /><br />
-    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${
-      data._id
-    }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
+    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${data._id
+      }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
     `,
   };
 };
@@ -142,7 +133,7 @@ const emailOrderFailure = function (user, data) {
     `,
   };
 };
-const emailOrderPending= function (user, data) {
+const emailOrderPending = function (user, data) {
   return {
     from: '"Pet Elegant Ecommerce " <pet.elegant.ecommerce.henry@gmail.com>',
     to: user.email,
@@ -165,7 +156,7 @@ const emailOrderPending= function (user, data) {
   };
 };
 
-const emailSaleNotification= function (user, data) {
+const emailSaleNotification = function (user, data) {
   return {
     from: '"Pet Elegant Ecommerce " <pet.elegant.ecommerce.henry@gmail.com>',
     to: user,
@@ -228,9 +219,8 @@ const emailShipping = function (user, data) {
     <li style="color: #000000;">DNI del titular de la tarjeta con la que se realizó el pago.</li>
     <li style="color: #000000;">Tarjeta de crédito utilizada para realizar la compra.</li>
     <br /><br />
-    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${
-      data._id
-    }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
+    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${data._id
+      }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
     `,
   };
 };
@@ -258,9 +248,8 @@ const emailOrderCancelled = function (user, data) {
     <li style="color: #000000;">DNI del titular de la tarjeta con la que se realizó el pago.</li>
     <li style="color: #000000;">Tarjeta de crédito utilizada para realizar la compra.</li>
     <br /><br />
-    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${
-      data._id
-    }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
+    <p style="color: #000000">Número de Orden: <span style="font-weight: bold; text-decoration: underline;">${data._id
+      }</span><br /><br />All rights reserved by &copy; <a href="https://petelegant.vercel.app/">Pet Elegant</a></p>
     `,
   };
 };
