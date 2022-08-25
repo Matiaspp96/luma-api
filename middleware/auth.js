@@ -6,8 +6,9 @@ const {
 
 const checkAuth = async (req, res, next) => {
   try {
+    console.log(req.headers, "req");
     if (!req.headers.authorization) {
-        handleErrorResponse(res, "NOT_ALLOW", 409);
+      handleErrorResponse(res, "NOT_ALLOW", 409);
       return;
     }
     const token = req.headers.authorization;
